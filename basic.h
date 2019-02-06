@@ -136,6 +136,7 @@ typedef struct {
 //extern const char *errorTable[];
 extern const char* const errorTable[];
 
+char isExecute();
 void reset();
 int tokenize(unsigned char *input, unsigned char *output, int outputSize);
 int processInput(unsigned char *tokenBuf);
