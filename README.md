@@ -1,3 +1,25 @@
+
+Arduino Basic シリアルコンソール対応
+=============
+Robin Edwards氏が開発・公開している「Arduino Basic」の改良版です。  
+
+**オリジナル版**  
+* Arduino Basic https://github.com/robinhedwards/ArduinoBASIC  
+
+**改良点**
+* 画面表示をOLEDからシリアルコンソールに変更
+* PS/2キーボード利用は廃止(シリアルコンソールから入力)  
+* コマンド実行後、OKプロンプトを表示するように変更
+* Arduino STM32 (Blue Pill対応) ただしLOAD、SAVE、TONEピンは未対応
+* プログラムソースに日本語コメント追加、ソースの整形
+* ファイル名arduino_BASIC.ino をarduinoBASIC.ino に変更
+
+**注意**  
+プログラム解析のために、プログラムソースにコメントを追加しましたが、  
+理解不足のため正しくないかもしれません。  
+
+以下、オリジナル版のドキュメントです。
+
 Arduino Basic
 =============
 Now you can turn your Arduino into an 80's home computer!
