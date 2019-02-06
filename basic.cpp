@@ -1285,6 +1285,11 @@ int tokenize(unsigned char *input, unsigned char *output, int outputSize) {
  * **************************************************************************/
 
 static char executeMode;	// 0 = syntax check only, 1 = execute
+
+char isExecute() {
+  return executeMode;
+}
+
 uint16_t lineNumber, stmtNumber;
 
 // stmt number is 0 for the first statement, then increases after each command seperator (:)

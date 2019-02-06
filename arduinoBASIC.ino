@@ -15,7 +15,10 @@ char autorun = 0;
 
 void setup() {
     Serial.begin(115200);
-
+#if defined (__STM32F1__)
+    while (!Serial) delay(100);
+#endif
+    
     reset();
     host_init();
     host_cls();
@@ -26,6 +29,8 @@ void setup() {
     // show memory size （メモリサイズ出力）
     host_outputFreeMem(sysVARSTART - sysPROGEND);
     //host_showBuffer();
+    host_newLine();
+    host_outputProgMemString((char *)pgm_read_word(&(errorTable[ERROR_NONE])));
 
 #if !defined (__STM32F1__)    
     // IF USING EXTERNAL EEPROM
@@ -44,7 +49,7 @@ void setup() {
 
 void loop() {
     int ret = ERROR_NONE;
-  
+
     if (!autorun) {
         // 自動実行でない場合の処理
         // get a line from the user
@@ -93,6 +98,7 @@ void loop() {
         host_outputProgMemString((char *)pgm_read_word(&(errorTable[ret])));
     
     } else {
-        host_outputProgMemString((char *)pgm_read_word(&(errorTable[ERROR_NONE])));      
+       if (isExecute() && tokenBuf[0])
+          host_outputProgMemString((char *)pgm_read_word(&(errorTable[ERROR_NONE])));      
     }
 }
