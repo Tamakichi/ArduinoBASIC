@@ -177,6 +177,7 @@ void host_showBuffer() {
 
 // 画面バッファに文字列を出力
 void host_outputString(char *str) {
+/*
   int pos = curX;
   while (*str) {
     if (pos < MAXTEXTLEN-1) {
@@ -186,6 +187,11 @@ void host_outputString(char *str) {
     str++;
   }
   curX = pos;
+*/
+  while (*str) {
+    host_outputChar(*str);
+    str++;
+  }
 }
 
 // フラシュメモリ上の文字列を出力
@@ -199,12 +205,19 @@ void host_outputProgMemString(const char *p) {
 
 // 文字を出力
 void host_outputChar(char c) {
+/*
   int pos = curX;
   if (pos < MAXTEXTLEN-1) {
      lineBuffer[pos++] = c;
      c_putc(c);
   }
   curX = pos;
+*/
+  c_putc(c);
+  curX++;
+  if (curX == SCREEN_WIDTH) {
+    host_newLine();
+  }    
 }
 
 // 数値を出力
@@ -267,7 +280,7 @@ void host_outputFloat(float f) {
 // 改行
 void host_newLine() {
   curX = 0;
-  memset(lineBuffer, 32, MAXTEXTLEN);
+  //memset(lineBuffer, 32, MAXTEXTLEN);
   c_newLine(c);
 }
 
