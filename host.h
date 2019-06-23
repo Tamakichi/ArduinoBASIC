@@ -4,7 +4,7 @@
 #define SCREEN_WIDTH        21
 #define SCREEN_HEIGHT       8
 
-#define EXTERNAL_EEPROM         0
+#define EXTERNAL_EEPROM         1
 #define EXTERNAL_EEPROM_ADDR    0x50    // I2C address (7 bits)
 #define EXTERNAL_EEPROM_SIZE    32768   // only <=32k tested (64k might work?)
 
@@ -48,7 +48,6 @@ void host_loadProgram();
 #endif
 
 #if EXTERNAL_EEPROM
-#include <I2cMaster.h>
 void writeExtEEPROM(unsigned int address, byte data);
 void host_directoryExtEEPROM();
 bool host_saveExtEEPROM(char *fileName);
